@@ -31,9 +31,15 @@ lang = {
     "idiot": "حمار",
     "stupid": "متخلف",
     "dumb": "عبيط",
+    "chair": "كرسي",
+    "couch": "كنبة",
+    "table": "طربيظا",
+    "computer": "كومبيوتر",
+    "elevator": "اصانسير",
+    "mouse": "فار",
 }
 
-def transcribe(raw):
+def decode(raw):
     try:
         google_translate = google()
         detected_lang = google_translate.detect(raw).lang
@@ -47,15 +53,43 @@ def transcribe(raw):
         return str(e)
 
 class translator:
+    """
+    Interactable class for the Slangify module.
+    Commands:
+    .init() to initialize (must do)
+    translate(text) to translate the text from any language to arabic slang (ar-sl - NEW)
+    speak(text) to use text-to-speech in a voice specified for arabic slang (ar-sl - NEW)
+    transcribe(file) to transcribe and look for any voice speaking in arabic slang (ar-sl - NEW) and return into normal text
+    """
     def init():
+        """Core function to initialize class"""
         global initialized
         initialized = True
 
-    def translate(text):
+    def translate(text: str = None):
+        """Function to translate any language into arabic slang"""
         if initialized != True:
             raise Exception("[TRANSLATOR]: Slangify translator was never initialized\n    Hotfix: Initialize with translator.init()")
         else:
-            transcribe(raw=text)
+            if text == None:
+                return None
+            else:
+                decode(raw=text)
+                words = text.split()
+    
+    def speak(text: str = None):
+        """Function to use text-to-speech using a voice specified for arabic slang"""
+        if initialized != True:
+            raise Exception("[TRANSLATOR]: Slangify translator was never initialized\n    Hotfix: Initialize with translator.init()")
+        else:
+            if text == None:
+                return None
+            else:
+                decode(raw=text)
+                words = text.split()
+
+    def transcribe(file):
+        """Function to use detect any arabic slang spoken in a file and return the text"""
             
 
             
