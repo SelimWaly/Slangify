@@ -37,6 +37,10 @@ lang = {
     "computer": "كومبيوتر",
     "elevator": "اصانسير",
     "mouse": "فار",
+    "on my way": "حماما",
+    "sit": "اعض",
+    "cockroach": "صرصار",
+    "cat": "قطة"
 }
 
 def decode(raw):
@@ -88,8 +92,16 @@ class translator:
                 decode(raw=text)
                 words = text.split()
 
-    def transcribe(file):
+    def transcribe(file: str = None):
         """Function to use detect any arabic slang spoken in a file and return the text"""
+        if initialized != True:
+            raise Exception("[TRANSLATOR]: Slangify translator was never initialized\n    Hotfix: Initialize with translator.init()")
+        else:
+            if file == None:
+                return None
+            else:
+                decode(raw=file)
+                words = file.split()
             
 
             
